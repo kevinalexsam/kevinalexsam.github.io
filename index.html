@@ -1,5 +1,227 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kevin Alex Sam | Business Analytics Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Inter', sans-serif;
+    }
+
+    body {
+        background: #f8fafc;
+        color: #1e293b;
+        line-height: 1.6;
+    }
+
+    header {
+        background: linear-gradient(135deg, #2563eb, #1e40af);
+        color: white;
+        padding: 80px 20px;
+        text-align: center;
+    }
+
+    header h1 {
+        font-size: 3rem;
+        font-weight: 700;
+    }
+
+    header p {
+        margin-top: 15px;
+        font-size: 1.2rem;
+        opacity: 0.9;
+    }
+
+    .cta-btn {
+        margin-top: 25px;
+        display: inline-block;
+        padding: 14px 28px;
+        background: white;
+        color: #1e40af;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 8px;
+        transition: 0.3s ease;
+    }
+
+    .cta-btn:hover {
+        background: #e2e8f0;
+    }
+
+    section {
+        max-width: 1100px;
+        margin: 70px auto;
+        padding: 0 20px;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 40px;
+        font-size: 2rem;
+    }
+
+    .projects {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+    }
+
+    .card {
+        background: white;
+        padding: 25px;
+        border-radius: 16px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+        transition: 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+    }
+
+    .card h3 {
+        margin-bottom: 10px;
+    }
+
+    .card p {
+        font-size: 0.95rem;
+        color: #475569;
+    }
+
+    .card a {
+        display: inline-block;
+        margin-top: 15px;
+        text-decoration: none;
+        color: #2563eb;
+        font-weight: 600;
+    }
+
+    .skills {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .skill {
+        background: #e0e7ff;
+        padding: 10px 18px;
+        border-radius: 25px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #1e40af;
+    }
+
+    .about {
+        text-align: center;
+        max-width: 750px;
+        margin: 0 auto;
+        color: #475569;
+    }
+
+    footer {
+        background: #0f172a;
+        color: white;
+        text-align: center;
+        padding: 25px;
+        margin-top: 60px;
+    }
+
+    @media(max-width: 768px){
+        header h1 { font-size: 2.2rem; }
+    }
+
+</style>
+</head>
+
 <body>
-  hello world
+
+<header>
+    <h1>Kevin Alex Sam — Business Analytics Portfolio</h1>
+    <p>Power BI • Business Intelligence • Data Visualization • Data Analysis</p>
+    <a class="cta-btn" href="https://github.com/kevinalexsam" target="_blank">View GitHub Profile</a>
+</header>
+
+<section>
+    <h2>Featured Projects</h2>
+
+    <div class="projects">
+
+        <div class="card">
+            <h3>Healthcare Analytics Dashboard</h3>
+            <p>
+                Interactive Power BI dashboard analyzing patient demographics,
+                admissions, medical conditions, and billing insights using
+                DAX calculations and data modeling.
+            </p>
+            <a href="https://github.com/kevinalexsam/healthcare-dataset" target="_blank">
+                View Project →
+            </a>
+        </div>
+
+        <!--<div class="card">
+            <h3>Business Performance Dashboard</h3>
+            <p>
+                Executive-level reporting dashboard tracking KPIs,
+                revenue trends, and operational performance metrics.
+            </p>
+            <a href="https://github.com/yourusername/your-business-repo" target="_blank">
+                View Project →
+            </a>
+        </div>
+
+        <div class="card">
+            <h3>Data Analysis with Python</h3>
+            <p>
+                Exploratory data analysis and visualization using Python,
+                Pandas, and Matplotlib to uncover trends and insights.
+            </p>
+            <a href="https://github.com/yourusername/your-python-repo" target="_blank">
+                View Project →
+            </a>
+        </div>-->
+
+    </div>
+</section>
+
+<section>
+    <h2>Core Skills</h2>
+
+    <div class="skills">
+        <div class="skill">Power BI</div>
+        <div class="skill">DAX</div>
+        <div class="skill">Data Modeling</div>
+        <div class="skill">SQL</div>
+        <div class="skill">Python</div>
+        <div class="skill">Data Visualization</div>
+        <div class="skill">Business Intelligence</div>
+        <div class="skill">KPI Reporting</div>
+    </div>
+</section>
+
+<section>
+    <h2>About Me</h2>
+
+    <div class="about">
+        <p>
+            Data-focused professional passionate about transforming raw data into
+            meaningful insights. Experienced in building interactive dashboards,
+            performing data analysis, and supporting business decision-making
+            through clear and impactful visual storytelling.
+        </p>
+    </div>
+</section>
+
+<footer>
+    © 2026 Kevin Alex Sam | Data Analytics Portfolio | Hosted on GitHub Pages
+</footer>
+
 </body>
 </html>
