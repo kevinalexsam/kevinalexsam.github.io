@@ -3,224 +3,689 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kevin Alex Sam | Business Analytics Portfolio</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
+<title>Kevin Alex Sam — Business Analytics Portfolio</title>
+<meta name="description" content="Power BI developer and business analyst turning raw data into decisions.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Inter', sans-serif;
-    }
+  :root{
+    --bg: #0F1729;
+    --panel: #161F35;
+    --panel-2: #1C2743;
+    --line: #2A3654;
+    --ink: #EDEFF5;
+    --muted: #8891A8;
+    --muted-2: #626E8C;
+    --amber: #E8A33D;
+    --amber-dim: #E8A33D33;
+    --teal: #3FA796;
+    --radius: 3px;
+  }
 
-    body {
-        background: #f8fafc;
-        color: #1e293b;
-        line-height: 1.6;
-    }
+  *{ box-sizing: border-box; margin:0; padding:0; }
 
-    header {
-        background: linear-gradient(135deg, #2563eb, #1e40af);
-        color: white;
-        padding: 80px 20px;
-        text-align: center;
-    }
+  html{ scroll-behavior: smooth; }
 
-    header h1 {
-        font-size: 3rem;
-        font-weight: 700;
-    }
+  body{
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
 
-    header p {
-        margin-top: 15px;
-        font-size: 1.2rem;
-        opacity: 0.9;
-    }
+  body::before{
+    content:"";
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 64px 64px;
+    opacity: 0.12;
+    pointer-events: none;
+    z-index: 0;
+  }
 
-    .cta-btn {
-        margin-top: 25px;
-        display: inline-block;
-        padding: 14px 28px;
-        background: white;
-        color: #1e40af;
-        font-weight: 600;
-        text-decoration: none;
-        border-radius: 8px;
-        transition: 0.3s ease;
-    }
+  a{ color: inherit; text-decoration: none; }
 
-    .cta-btn:hover {
-        background: #e2e8f0;
-    }
+  h1, h2, h3{
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: -0.01em;
+  }
 
-    section {
-        max-width: 1100px;
-        margin: 70px auto;
-        padding: 0 20px;
-    }
+  .mono{ font-family: 'JetBrains Mono', monospace; }
 
-    h2 {
-        text-align: center;
-        margin-bottom: 40px;
-        font-size: 2rem;
-    }
+  .wrap{
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+    z-index: 1;
+  }
 
-    .projects {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 25px;
-    }
+  /* ---------- NAV ---------- */
+  header{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(15, 23, 41, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav.wrap{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+  }
+  .brand{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 17px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .brand .dot{
+    width: 8px; height: 8px;
+    background: var(--amber);
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px var(--amber-dim);
+  }
+  .navlinks{
+    display: flex;
+    gap: 32px;
+    font-size: 13px;
+  }
+  .navlinks a{
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.02em;
+    transition: color .2s ease;
+    position: relative;
+  }
+  .navlinks a:hover{ color: var(--ink); }
+  .navlinks a::before{
+    content: attr(data-n);
+    color: var(--amber);
+    margin-right: 6px;
+  }
 
-    .card {
-        background: white;
-        padding: 25px;
-        border-radius: 16px;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-        transition: 0.3s ease;
-    }
+  /* ---------- HERO ---------- */
+  .hero{
+    padding: 96px 0 64px;
+    position: relative;
+  }
+  .eyebrow{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    color: var(--amber);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .eyebrow::before{
+    content: "";
+    width: 24px; height: 1px;
+    background: var(--amber);
+  }
+  .hero h1{
+    font-size: clamp(40px, 6vw, 68px);
+    font-weight: 700;
+    line-height: 1.05;
+    max-width: 780px;
+  }
+  .hero h1 .accent{ color: var(--amber); }
+  .hero p.lede{
+    margin-top: 22px;
+    max-width: 560px;
+    color: var(--muted);
+    font-size: 17px;
+  }
+  .hero-actions{
+    display: flex;
+    gap: 14px;
+    margin-top: 34px;
+    flex-wrap: wrap;
+  }
+  .btn{
+    padding: 13px 24px;
+    border-radius: var(--radius);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all .2s ease;
+    border: 1px solid transparent;
+  }
+  .btn-primary{
+    background: var(--amber);
+    color: #17130A;
+    font-weight: 600;
+  }
+  .btn-primary:hover{ background: #f0b256; transform: translateY(-1px); }
+  .btn-ghost{
+    border-color: var(--line);
+    color: var(--ink);
+  }
+  .btn-ghost:hover{ border-color: var(--amber); color: var(--amber); }
 
-    .card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 12px 30px rgba(0,0,0,0.1);
-    }
+  /* KPI strip */
+  .kpi-strip{
+    margin-top: 64px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--panel);
+  }
+  .kpi{
+    padding: 22px 20px;
+    border-right: 1px solid var(--line);
+    position: relative;
+  }
+  .kpi:last-child{ border-right: none; }
+  .kpi .val{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--ink);
+    display:flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+  .kpi .val .unit{ font-size: 14px; color: var(--amber); }
+  .kpi .label{
+    font-size: 11.5px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 6px;
+  }
+  .kpi .spark{
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--line);
+    overflow: hidden;
+  }
+  .kpi .spark::after{
+    content:"";
+    position: absolute;
+    inset: 0;
+    background: var(--amber);
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: fillbar 1.4s ease forwards;
+    animation-delay: var(--d, 0s);
+  }
+  @keyframes fillbar{ to{ transform: scaleX(1); } }
 
-    .card h3 {
-        margin-bottom: 10px;
-    }
+  /* section scaffolding */
+  section{ padding: 88px 0; border-top: 1px solid var(--line); position: relative; }
+  .section-head{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 44px;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .section-label{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    color: var(--muted-2);
+    text-transform: uppercase;
+  }
+  .section-head h2{
+    font-size: clamp(26px, 3.4vw, 34px);
+    font-weight: 600;
+  }
 
-    .card p {
-        font-size: 0.95rem;
-        color: #475569;
-    }
+  /* ---------- CHART SIGNATURE ---------- */
+  .chart-card{
+    margin-top: 40px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--panel);
+    padding: 24px 24px 12px;
+  }
+  .chart-card .chart-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .chart-card .chart-title{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+  .legend{ display:flex; gap:16px; font-family:'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); }
+  .legend span{ display:flex; align-items:center; gap:6px; }
+  .legend i{ width:8px; height:8px; display:inline-block; border-radius:2px; }
 
-    .card a {
-        display: inline-block;
-        margin-top: 15px;
-        text-decoration: none;
-        color: #2563eb;
-        font-weight: 600;
-    }
+  /* ---------- SKILLS ---------- */
+  .skills-grid{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .skill-cell{
+    background: var(--panel);
+    padding: 24px 20px;
+    transition: background .2s ease;
+  }
+  .skill-cell:hover{ background: var(--panel-2); }
+  .skill-cell .icon{
+    width: 30px; height: 30px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 16px;
+    color: var(--amber);
+  }
+  .skill-cell .name{
+    font-weight: 600;
+    font-size: 14.5px;
+  }
+  .skill-cell .cat{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    color: var(--muted-2);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 4px;
+  }
 
-    .skills {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 15px;
-    }
+  /* ---------- PROJECT ---------- */
+  .project-card{
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--panel);
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+  }
+  .project-visual{
+    padding: 32px;
+    background: var(--panel-2);
+    border-right: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 14px;
+  }
+  .mini-bars{
+    display:flex; align-items:flex-end; gap:8px; height: 90px;
+  }
+  .mini-bars .bar{
+    flex:1;
+    background: linear-gradient(180deg, var(--amber), var(--amber-dim));
+    border-radius: 2px 2px 0 0;
+    transform: scaleY(0);
+    transform-origin: bottom;
+    animation: growbar .9s cubic-bezier(.2,.8,.2,1) forwards;
+  }
+  @keyframes growbar{ to{ transform: scaleY(1); } }
+  .mini-tag{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .project-body{
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+  }
+  .project-tag{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--teal);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .project-body h3{
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+  .project-body p{
+    color: var(--muted);
+    font-size: 14.5px;
+    flex-grow: 1;
+  }
+  .project-meta{
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 18px 0 22px;
+  }
+  .pill{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    padding: 5px 10px;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    color: var(--muted);
+  }
+  .project-link{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--amber);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: fit-content;
+    transition: gap .2s ease;
+  }
+  .project-link:hover{ gap: 12px; }
 
-    .skill {
-        background: #e0e7ff;
-        padding: 10px 18px;
-        border-radius: 25px;
-        font-size: 0.9rem;
-        font-weight: 600;
-        color: #1e40af;
-    }
+  /* ---------- ABOUT ---------- */
+  .about-layout{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+  .about-layout p{
+    color: var(--muted);
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+  .about-layout p strong{ color: var(--ink); font-weight: 500; }
+  .stat-list{
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--panel);
+  }
+  .stat-row{
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--line);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+  }
+  .stat-row:last-child{ border-bottom: none; }
+  .stat-row .k{ color: var(--muted); }
+  .stat-row .v{ color: var(--ink); }
 
-    .about {
-        text-align: center;
-        max-width: 750px;
-        margin: 0 auto;
-        color: #475569;
-    }
+  /* ---------- FOOTER / CONTACT ---------- */
+  footer{
+    border-top: 1px solid var(--line);
+    padding: 64px 0 40px;
+  }
+  .contact-cta{
+    text-align: center;
+    max-width: 560px;
+    margin: 0 auto 56px;
+  }
+  .contact-cta h2{
+    font-size: clamp(28px, 4vw, 40px);
+  }
+  .contact-cta p{
+    color: var(--muted);
+    margin: 16px 0 30px;
+  }
+  .contact-links{
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .foot-bottom{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    color: var(--muted-2);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .status-dot{
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .status-dot i{
+    width: 6px; height: 6px;
+    background: var(--teal);
+    border-radius: 50%;
+  }
 
-    footer {
-        background: #0f172a;
-        color: white;
-        text-align: center;
-        padding: 25px;
-        margin-top: 60px;
-    }
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 860px){
+    .kpi-strip{ grid-template-columns: repeat(2, 1fr); }
+    .kpi:nth-child(2){ border-right: none; }
+    .skills-grid{ grid-template-columns: repeat(2, 1fr); }
+    .project-card{ grid-template-columns: 1fr; }
+    .project-visual{ border-right: none; border-bottom: 1px solid var(--line); }
+    .about-layout{ grid-template-columns: 1fr; }
+    .navlinks{ display: none; }
+  }
 
-    @media(max-width: 768px){
-        header h1 { font-size: 2.2rem; }
-    }
-
+  @media (prefers-reduced-motion: reduce){
+    *{ animation: none !important; transition: none !important; }
+  }
 </style>
 </head>
-
 <body>
 
 <header>
-    <h1>Kevin Alex Sam - Business Analytics Portfolio</h1>
-    <p>Power BI • Business Intelligence • Data Visualization • Data Analysis</p>
-    <a class="cta-btn" href="https://github.com/kevinalexsam" target="_blank">View GitHub Profile</a>
+  <nav class="wrap">
+    <div class="brand"><span class="dot"></span>Kevin Alex Sam</div>
+    <div class="navlinks">
+      <a href="#work" data-n="01">Work</a>
+      <a href="#skills" data-n="02">Skills</a>
+      <a href="#about" data-n="03">About</a>
+      <a href="#contact" data-n="04">Contact</a>
+    </div>
+  </nav>
 </header>
 
-<section>
-    <h2>Featured Projects</h2>
+<main class="wrap">
 
-    <div class="projects">
+  <!-- HERO -->
+  <section class="hero" style="border-top:none; padding-top:96px;">
+    <div class="eyebrow">Business Analytics &amp; Power BI</div>
+    <h1>Turning raw data into<br>decisions people <span class="accent">act on</span>.</h1>
+    <p class="lede">I build interactive dashboards and data models that surface what actually matters — for teams who need answers, not spreadsheets.</p>
+    <div class="hero-actions">
+      <a href="#work" class="btn btn-primary">View Projects ↓</a>
+      <a href="https://github.com/kevinalexsam" target="_blank" class="btn btn-ghost">GitHub Profile ↗</a>
+    </div>
 
-        <div class="card">
-            <h3>Healthcare Analytics Dashboard</h3>
-            <p>
-                Interactive Power BI dashboard analyzing patient demographics,
-                admissions, medical conditions, and billing insights using
-                DAX calculations and data modeling.
-            </p>
-            <a href="https://github.com/kevinalexsam/healthcare-dataset" target="_blank">
-                View Project →
-            </a>
+    <div class="kpi-strip">
+      <div class="kpi">
+        <div class="val">02<span class="unit">yrs</span></div>
+        <div class="label">Analytics Focus</div>
+        <div class="spark" style="--d:0.1s"></div>
+      </div>
+      <div class="kpi">
+        <div class="val">08<span class="unit">+</span></div>
+        <div class="label">Core Tools</div>
+        <div class="spark" style="--d:0.25s"></div>
+      </div>
+      <div class="kpi">
+        <div class="val">DAX</div>
+        <div class="label">Daily Driver</div>
+        <div class="spark" style="--d:0.4s"></div>
+      </div>
+      <div class="kpi">
+        <div class="val">SQL</div>
+        <div class="label">+ Python</div>
+        <div class="spark" style="--d:0.55s"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="section-head">
+      <div>
+        <div class="section-label">01 — Selected Work</div>
+        <h2>Dashboards that answer the question</h2>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-visual">
+        <div class="mini-bars">
+          <div class="bar" style="height:55%; animation-delay:.05s"></div>
+          <div class="bar" style="height:78%; animation-delay:.12s"></div>
+          <div class="bar" style="height:40%; animation-delay:.19s"></div>
+          <div class="bar" style="height:92%; animation-delay:.26s"></div>
+          <div class="bar" style="height:64%; animation-delay:.33s"></div>
+          <div class="bar" style="height:70%; animation-delay:.40s"></div>
+          <div class="bar" style="height:48%; animation-delay:.47s"></div>
         </div>
-
-        <!--<div class="card">
-            <h3>Business Performance Dashboard</h3>
-            <p>
-                Executive-level reporting dashboard tracking KPIs,
-                revenue trends, and operational performance metrics.
-            </p>
-            <a href="https://github.com/yourusername/your-business-repo" target="_blank">
-                View Project →
-            </a>
+        <div class="mini-tag">Admissions by department · normalized</div>
+      </div>
+      <div class="project-body">
+        <div class="project-tag">Healthcare Analytics</div>
+        <h3>Healthcare Analytics Dashboard</h3>
+        <p>An interactive Power BI dashboard analyzing patient demographics, admissions trends, medical conditions, and billing insights — built with custom DAX measures and a normalized data model to keep report performance fast at scale.</p>
+        <div class="project-meta">
+          <span class="pill">Power BI</span>
+          <span class="pill">DAX</span>
+          <span class="pill">Data Modeling</span>
         </div>
-
-        <div class="card">
-            <h3>Data Analysis with Python</h3>
-            <p>
-                Exploratory data analysis and visualization using Python,
-                Pandas, and Matplotlib to uncover trends and insights.
-            </p>
-            <a href="https://github.com/yourusername/your-python-repo" target="_blank">
-                View Project →
-            </a>
-        </div>-->
-
+        <a href="https://github.com/kevinalexsam/healthcare-dataset" target="_blank" class="project-link">View Project on GitHub →</a>
+      </div>
     </div>
-</section>
+  </section>
 
-<section>
-    <h2>Core Skills</h2>
-
-    <div class="skills">
-        <div class="skill">Power BI</div>
-        <div class="skill">DAX</div>
-        <div class="skill">Data Modeling</div>
-        <div class="skill">SQL</div>
-        <div class="skill">Python</div>
-        <div class="skill">Data Visualization</div>
-        <div class="skill">Business Intelligence</div>
-        <div class="skill">KPI Reporting</div>
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-head">
+      <div>
+        <div class="section-label">02 — Toolkit</div>
+        <h2>The stack behind the story</h2>
+      </div>
     </div>
-</section>
 
-<section>
-    <h2>About Me</h2>
-
-    <div class="about">
-        <p>
-            Data-focused professional passionate about transforming raw data into
-            meaningful insights. Experienced in building interactive dashboards,
-            performing data analysis, and supporting business decision-making
-            through clear and impactful visual storytelling.
-        </p>
+    <div class="skills-grid">
+      <div class="skill-cell">
+        <div class="icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="12" width="4" height="8"/><rect x="10" y="7" width="4" height="13"/><rect x="17" y="3" width="4" height="17"/></svg>
+        </div>
+        <div class="name">Power BI</div>
+        <div class="cat">Visualization</div>
+      </div>
+      <div class="skill-cell">
+        <div class="icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 17V7l8 6 8-6v10"/></svg>
+        </div>
+        <div class="name">DAX</div>
+        <div class="cat">Calc Engine</div>
+      </div>
+      <div class="skill-cell">
+        <div class="icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg>
+        </div>
+        <div class="name">Data Modeling</div>
+        <div class="cat">Architecture</div>
+      </div>
+      <div class="skill-cell">
+        <div class="icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h16v4H4zM4 10h10v4H4zM4 16h13v4H4z"/></svg>
+        </div>
+        <div class="name">SQL</div>
+        <div class="cat">Querying</div>
+      </div>
+      <div class="skill-cell">
+        <div class="icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg>
+        </div>
+        <div class="name">Python</div>
+        <div class="cat">Analysis</div>
+      </div>
+      <div class="skill-cell">
+        <div class="icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg>
+        </div>
+        <div class="name">Data Visualization</div>
+        <div class="cat">Storytelling</div>
+      </div>
+      <div class="skill-cell">
+        <div class="icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <div class="name">Business Intelligence</div>
+        <div class="cat">Strategy</div>
+      </div>
+      <div class="skill-cell">
+        <div class="icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><path d="M7 7l3 3M17 7l-3 3M7 17l3-3M17 17l-3-3"/></svg>
+        </div>
+        <div class="name">KPI Reporting</div>
+        <div class="cat">Measurement</div>
+      </div>
     </div>
-</section>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-head">
+      <div>
+        <div class="section-label">03 — About</div>
+        <h2>Data-focused, decision-driven</h2>
+      </div>
+    </div>
+
+    <div class="about-layout">
+      <div>
+        <p>I'm a <strong>data-focused professional</strong> passionate about transforming raw data into meaningful insight. My work sits at the intersection of analysis and communication — pulling signal out of messy datasets and shaping it into something a decision-maker can actually use.</p>
+        <p>I spend most of my time in <strong>Power BI and DAX</strong>, building data models that stay fast and reports that stay honest. Underneath that, I lean on <strong>SQL and Python</strong> to get data clean before it ever reaches a dashboard.</p>
+        <p>What I care about most is the last step: <strong>clear, impactful visual storytelling</strong> that supports real business decisions, not just charts for their own sake.</p>
+      </div>
+      <div class="stat-list">
+        <div class="stat-row"><span class="k">Focus</span><span class="v">Business Analytics</span></div>
+        <div class="stat-row"><span class="k">Primary Tool</span><span class="v">Power BI</span></div>
+        <div class="stat-row"><span class="k">Query Layer</span><span class="v">SQL</span></div>
+        <div class="stat-row"><span class="k">Scripting</span><span class="v">Python</span></div>
+        <div class="stat-row"><span class="k">Based</span><span class="v">Open to Remote</span></div>
+        <div class="stat-row"><span class="k">Status</span><span class="v" style="color:var(--teal)">● Available</span></div>
+      </div>
+    </div>
+  </section>
+
+</main>
 
 <footer>
-    © 2026 Kevin Alex Sam | Data Analytics Portfolio | Hosted on GitHub Pages
+  <div class="wrap">
+    <div class="contact-cta" id="contact">
+      <div class="section-label" style="text-align:center; margin-bottom:14px;">04 — Contact</div>
+      <h2>Have a dataset that needs a story?</h2>
+      <p>I'm open to analytics roles and Power BI project work. Reach out on GitHub or take a look at what I've built.</p>
+      <div class="contact-links">
+        <a href="https://github.com/kevinalexsam" target="_blank" class="btn btn-primary">GitHub ↗</a>
+        <a href="#work" class="btn btn-ghost">See Projects</a>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <span>© 2026 Kevin Alex Sam</span>
+      <span class="status-dot"><i></i>Hosted on GitHub Pages</span>
+    </div>
+  </div>
 </footer>
 
 </body>
